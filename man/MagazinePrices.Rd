@@ -1,21 +1,22 @@
 \name{MagazinePrices}
 \docType{data}
 \alias{MagazinePrices}
-\title{Magazine Prices }
-\description{
-  yearly observations of  38 magazines from 1940  to 1980
+\title{Magazine Prices}
+\description{yearly observations of 38 magazines from 1940 to 1980
 
- \emph{number of observations} :  1262
+    \emph{number of observations} : 1262
 
-   \emph{country} :  United States
+    \emph{number of  time-series } :  41 
 
-\emph{economic topic} : industrial organization
+    \emph{country} :  United States 
 
-\emph{econometrics topic} : binomial variable
+    \emph{JEL codes: }L82
+
+    \emph{Chapter} : 08
 
 }
 \usage{data(MagazinePrices)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{year}{the year}
     \item{magazine}{the magazine name}
@@ -24,22 +25,39 @@
     \item{length}{number of years since the previous price change}
     \item{cpi}{gdp deflator index}
     \item{cuminf}{cummulative change in inflation since the previous price change}
-    \item{sales}{single copy sales of magazines for magazine industry }
+    \item{sales}{single copy sales of magazines for magazine industry}
     \item{cumsales}{cumulative change in magazine industry sales since previous price change}
     \item{included}{is the observation included in the econometric analysis ?}
     \item{id}{group index numbers used for the conditional logit estimation}
   }
 }
-\source{
-    Journal of Applied Econometrics data archive : \url{http://jae.wiley.com/jae/}.
-
-}
+\source{Journal of Applied Econometrics Data Archive : \url{http://qed.econ.queensu.ca/jae/}}
 \references{
-    Willis, Jonathan L. (2006) \dQuote{Magazine prices revisited}, \emph{Journal of Applied Econometrics}, \bold{21(3)}, april, 337-344.
+Willis, Jonathan L. (2006) \dQuote{Magazine Prices Revisited}, \emph{Journal of Applied Econometrics}, \bold{21(3)}, 337-344, \doi{10.1002/jae.836}
+.
 
-    Cecchetti, Stephen G. (1986) \dQuote{The frequency of price adjustment, a study of newsstand prices of magazines}, \emph{Journal of Econometrics}, \bold{31}, 255-274.
+Cecchetti, Stephen G. (1986) \dQuote{The Frequency of Price Adjustment, a Study of Newsstand Prices of Magazines}, \emph{Journal of Econometrics}, \bold{31}, 255-274, \doi{10.1016/0304-4076(86)90061-8}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
+\keyword{datasets}
+\examples{
 
-}\keyword{datasets}
+#### Example 8-3
+
+## ------------------------------------------------------------------------
+data("MagazinePrices", package = "pder")
+logitS <- glm(change ~ length + cuminf + cumsales, data = MagazinePrices, 
+              subset = included == 1, family = binomial(link = 'logit'))
+logitD <- glm(change ~ length + cuminf + cumsales + magazine, 
+              data = MagazinePrices, 
+              subset = included == 1, family = binomial(link = 'logit'))
+library("survival")
+logitC <- clogit(change ~ length + cuminf + cumsales + strata(id), 
+                 data = MagazinePrices,
+                 subset = included == 1)
+library("texreg")
+screenreg(list(logit = logitS, "FE logit" = logitD,
+"cond. logit" = logitC), omit.coef = "magazine")
+}
+

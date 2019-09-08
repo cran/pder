@@ -1,21 +1,22 @@
 \name{RegIneq}
 \docType{data}
 \alias{RegIneq}
-\title{Interregional Redistribution and Inequalities }
-\description{
-   observations of  17 countries from 1982  to 1999
+\title{Interregional Redistribution and Inequalities}
+\description{yearly observations of 17 countries from 1982 to 1999
 
- \emph{number of observations} :  102
+    \emph{number of observations} : 102
 
-   \emph{country} :  oecd
+    \emph{number of  time-series } :  6 
 
-\emph{economic topic} : public economics
+    \emph{country} :  oecd 
 
-\emph{econometrics topic} : endogeneity
+    \emph{JEL codes: }D72, H23, H71, H73, H77, R12, R23
+
+    \emph{Chapter} : 07
 
 }
 \usage{data(RegIneq)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{country}{the country}
     \item{period}{the period}
@@ -31,14 +32,10 @@
     \item{transaut}{sub-national non autonomous revenues as share of total government revenues}
   }
 }
-\source{
-    Review of Economic Studies' web site \url{http://restud.oxfordjournals.org/}.
-
-}
+\source{Review of Economic Studies' web site \url{http://restud.oxfordjournals.org/}}
 \references{
-    Anke S. Kessler and Nico A. Hansen, (2012) \dQuote{Interregional redistribution and mobility in federations: a positive approach}, \emph{Review of Economic Studies}, \bold{78(4)}, 1345-1378.
+Anke S. Kessler and Nico A. Hansen and Christian Lessmann (2011) \dQuote{Interregional Redistribution and Mobility in Federations: a Positive Approach}, \emph{Review of Economic Studies}, \bold{78(4)}, 1345-1378, \doi{10.1093/restud/rdr003}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
-
-}\keyword{datasets}
+\keyword{datasets}

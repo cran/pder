@@ -1,21 +1,22 @@
 \name{TradeFDI}
 \docType{data}
 \alias{TradeFDI}
-\title{Trade and Foreign Direct Investment in Germany and the United States }
-\description{
-  yearly observations of  490 combinations of countries / industries from 1989  to 1999
+\title{Trade and Foreign Direct Investment in Germany and the United States}
+\description{yearly observations of 490 combinations of countries / industries from 1989 to 1999
 
- \emph{number of observations} :  3860
+    \emph{number of observations} : 3860
 
-   \emph{country} :  Germany and United States
+    \emph{number of  time-series } :  11 
 
-\emph{economic topic} : international economics
+    \emph{country} :  Germany and United States 
 
-\emph{econometrics topic} : endogeneity
+    \emph{JEL codes: }F12, F14, F21, F23
+
+    \emph{Chapter} : 06
 
 }
 \usage{data(TradeFDI)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{id}{id}
     \item{year}{time period}
@@ -34,14 +35,10 @@
     \item{lkgdt}{abs(lrk)*lgdt}
   }
 }
-\source{
-    Journal of Applied Econometrics data archive : \url{http://jae.wiley.com/jae/}.
-
-}
+\source{Journal of Applied Econometrics Data Archive : \url{http://qed.econ.queensu.ca/jae/}}
 \references{
-    Peter Egger and Michael Pfaffermayr, (2004) \dQuote{Distance, Trade, and FDI: A Hausman-Taylor SUR Approach}, \emph{Journal of Applied Econometrics}, \bold{19(2)}, 227--246.
+Peter Egger and Michael Pfaffermayr (2004) \dQuote{Distance, Trade, and Fdi: A Hausman-taylor Sur Approach}, \emph{Journal of Applied Econometrics}, \bold{19(2)}, 227--246, \doi{10.1002/jae.721}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
-
-}\keyword{datasets}
+\keyword{datasets}

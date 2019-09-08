@@ -1,21 +1,22 @@
 \name{SeatBelt}
 \docType{data}
 \alias{SeatBelt}
-\title{Seat Belt Usage and Traffic Fatalities }
-\description{
-  yearly observations of 51 states
+\title{Seat Belt Usage and Traffic Fatalities}
+\description{yearly observations of 51 states
 
- \emph{number of observations} :  765
+    \emph{number of observations} : 765
 
-   \emph{country} :  United States
+    \emph{number of  time-series } :  15 
 
-\emph{economic topic} : law and economics
+    \emph{country} :  United States 
 
-\emph{econometrics topic} : endogeneity
+    \emph{JEL codes: }R41, K42
+
+    \emph{Chapter} : 06
 
 }
 \usage{data(SeatBelt)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{state}{the state code}
     \item{year}{the year}
@@ -43,14 +44,44 @@
     \item{dsp}{a dummy variable equal to 1 for the periods in which the state had a primary-enforcement mandatory seat belt law that was preceded by a secondary enforcement law (no seat belt law is the base category}
   }
 }
-\source{
-    author's website \url{http://www.stanford.edu/~leinav/}.
-
-}
+\source{author's website \url{http://www.stanford.edu/~leinav/}}
 \references{
-    Cohen, Alma  and  Liran  Einav (2003) \dQuote{The effects of mandatory seat belt laws on driving behavior and traffic fatalities}, \emph{the Review of Economics and Statistics}, \bold{85(4)}, 828-843.
+Cohen, Alma and Liran Einav (2003) \dQuote{The Effects of Mandatory Seat Belt Laws on Driving Behavior and Traffic Fatalities}, \emph{The Review of Economics and Statistics}, \bold{85(4)}, 828-843, \doi{10.2139/ssrn.293582}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
+\keyword{datasets}
+\examples{
+#### Example 6-1
 
-}\keyword{datasets}
+## ------------------------------------------------------------------------
+library("plm")
+
+## ------------------------------------------------------------------------
+y ~ x1 + x2 + x3 | x1 + x3 + z
+y ~ x1 + x2 + x3 | . - x2 + z
+
+## ------------------------------------------------------------------------
+
+data("SeatBelt", package = "pder")
+SeatBelt$occfat <- with(SeatBelt, log(farsocc / (vmtrural + vmturban)))
+ols <- plm(occfat ~ log(usage) + log(percapin) + log(unemp) + log(meanage) + 
+           log(precentb) + log(precenth)+ log(densrur) + 
+           log(densurb) + log(viopcap) + log(proppcap) +
+           log(vmtrural) + log(vmturban) + log(fueltax) +
+           lim65 + lim70p + mlda21 + bac08, SeatBelt, 
+           effect = "time")
+fe <- update(ols, effect = "twoways")
+ivfe <- update(fe, . ~ . |  . - log(usage) + ds + dp +dsp)
+
+rbind(ols = coef(summary(ols))[1,],
+      fe = coef(summary(fe))[1, ],
+      w2sls = coef(summary(ivfe))[1, ])
+
+## ------------------------------------------------------------------------
+SeatBelt$noccfat <- with(SeatBelt, log(farsnocc / (vmtrural + vmturban)))
+nivfe <- update(ivfe, noccfat ~ . | .)
+coef(summary(nivfe))[1, ]
+
+}
+

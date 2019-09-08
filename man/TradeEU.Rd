@@ -1,21 +1,22 @@
 \name{TradeEU}
 \docType{data}
 \alias{TradeEU}
-\title{Trade in the European Union }
-\description{
-  yearly observations of  91 Pairs of countries from 1960  to 2001
+\title{Trade in the European Union}
+\description{yearly observations of 91 pairs of countries from 1960 to 2001
 
- \emph{number of observations} :  3822
+    \emph{number of observations} : 3822
 
-   \emph{country} :  Europe
+    \emph{number of  time-series } :  42 
 
-\emph{economic topic} : international economics
+    \emph{country} :  Europe 
 
-\emph{econometrics topic} : endogeneity
+    \emph{JEL codes: }C51, F14
+
+    \emph{Chapter} : 06
 
 }
 \usage{data(TradeEU)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{year}{the year}
     \item{pair}{a pair of countries}
@@ -29,7 +30,7 @@
     \item{dist}{the geographical distance between capital cities;}
     \item{bor}{a dummy equal to 1 when the trading partners share a border;}
     \item{lan}{a dummy equal to 1 when both speak the same language;}
-    \item{rert}{ the logarithm of real exchange rates between the European currencies and the U.S. dollar;}
+    \item{rert}{the logarithm of real exchange rates between the European currencies and the U.S. dollar;}
     \item{ftrade}{the time specific common factors (individual means) of the variables trade}
     \item{fgdp}{the time specific common factors (individual means) of the variables gdp}
     \item{fsim}{the time specific common factors (individual means) of the variables sim}
@@ -37,14 +38,49 @@
     \item{frer}{the time specific common factors (individual means) of the variables rer}
   }
 }
-\source{
-    Journal of Applied Econometrics data archive : \url{http://jae.wiley.com/jae/}.
-
-}
+\source{Journal of Applied Econometrics data archive : \url{http://jae.wiley.com/jae/}}
 \references{
-    Serlenga, Laura  and  Yongcheol  Shin (2007) \dQuote{Gravity models of intra-EU trade: application of the CCEP-HT estimation in heterogenous panels with unobserved common time-specific factors}, \emph{Journal of Applied Econometrics}, \bold{22}, 361--381.
+Serlenga, Laura and Yongcheol Shin (2007) \dQuote{Gravity Models of Intra-eu Trade: Application of the Ccep-ht Estimation in Heterogenous Panels with Unobserved Common Time-specific Factors}, \emph{Journal of Applied Econometrics}, \bold{22}, 361--381, \doi{10.1002/jae.944}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
+\keyword{datasets}
+\examples{
+#### Example 6-3
 
-}\keyword{datasets}
+## ------------------------------------------------------------------------
+data("TradeEU", package = "pder")
+library("plm")
+
+## ------------------------------------------------------------------------
+ols <- plm(trade ~ gdp + dist + rer + rlf + sim + cee + emu + bor + lan, TradeEU, 
+          model = "pooling", index = c("pair", "year"))
+fe <- update(ols, model = "within")
+fe
+
+## ------------------------------------------------------------------------
+re <- update(fe, model = "random")
+re
+
+## ------------------------------------------------------------------------
+phtest(re, fe)
+
+## ----results='hide'------------------------------------------------------
+ht1 <- plm(trade ~ gdp + dist + rer + rlf + sim + cee + emu + bor + lan | 
+           rer + dist + bor | gdp + rlf + sim + cee + emu + lan , 
+           data = TradeEU, model = "random", index = c("pair", "year"), 
+           inst.method = "baltagi", random.method = "ht")
+ht2 <- update(ht1, trade ~ gdp + dist + rer + rlf + sim + cee + emu + bor + lan | 
+              rer + gdp + rlf + dist + bor| sim + cee + emu + lan)
+
+## ------------------------------------------------------------------------
+phtest(ht1, fe)
+phtest(ht2, fe)
+
+## ------------------------------------------------------------------------
+ht2am <- update(ht2, inst.method = "am")
+
+## ------------------------------------------------------------------------
+phtest(ht2am, fe)
+}
+

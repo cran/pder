@@ -4,7 +4,7 @@
 \title{Spatial weights matrix for EvapoTransp}
 
 \description{
-to complete
+  Spatial weights matrix for the EvapoTransp data frame
 
 }
 
@@ -12,9 +12,8 @@ to complete
 data(etw)
 }
 
-\format{
-  to complete
-}
+\format{ A 86x86 matrix with elements different from zero if area i and
+  j are neighbours. Weights are row standardized.  }
 
 \author{Giovanni Millo}
 

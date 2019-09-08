@@ -1,21 +1,22 @@
 \name{IncomeMigrationV}
 \docType{data}
 \alias{IncomeMigrationV}
-\title{Income and Migration (village Data) }
-\description{
-  3-yearly observations of  44674 villages from 2005  to 2008
+\title{Income and Migration, Village Data}
+\description{3-yearly observations of 44674 villages from 2005 to 2008
 
- \emph{number of observations} :  89348
+    \emph{number of observations} : 89348
 
-   \emph{country} :  Indonesia
+    \emph{number of  time-series } :  2 
 
-\emph{economic topic} : economic development, innovation, technological change, and growth
+    \emph{country} :  Indonesia 
 
-\emph{econometrics topic} : censored and truncated variable
+    \emph{JEL codes: }F22, J43, O13, O15, Q11, Q12, R23
+
+    \emph{Chapter} : 08
 
 }
 \usage{data(IncomeMigrationV)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{village}{village index}
     \item{year}{the year}
@@ -23,17 +24,13 @@
     \item{district}{the district of the village}
     \item{price}{rice price shock}
     \item{rain}{rain shock}
-    \item{pareto}{pareto parameter of the landholdings distribution}
+    \item{pareto}{Pareto parameter of the landholdings distribution}
   }
 }
-\source{
-    American Economic Association's website \url{http://www.aeaweb.org}.
-
-}
+\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
 \references{
-    Bazzi, Samuel (2017) \dQuote{Wealth heterogeneity and the income elasticity of migration}, \emph{American Economic Journal, Applied Economics}, \bold{9(2)}, 219--255.
+Bazzi, Samuel (2017) \dQuote{Wealth Heterogeneity and the Income Elasticity of Migration}, \emph{American Economic Journal, Applied Economics}, \bold{9(2)}, 219--255, \doi{10.1257/app.20150548}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
-
-}\keyword{datasets}
+\keyword{datasets}

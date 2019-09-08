@@ -1,21 +1,22 @@
 \name{Mafia}
 \docType{data}
 \alias{Mafia}
-\title{Mafia and Public Spending }
-\description{
-  yearly observations of  95 provinces from 1986  to 1999
+\title{Mafia and Public Spending}
+\description{yearly observations of 95 provinces from 1986 to 1999
 
- \emph{number of observations} :  1330
+    \emph{number of observations} : 1330
 
-   \emph{country} :  Italy
+    \emph{number of  time-series } :  14 
 
-\emph{economic topic} : macroeconomics and monetary policy
+    \emph{country} :  Italy 
 
-\emph{econometrics topic} : endogeneity
+    \emph{JEL codes: }D72, E62, H71, K42
+
+    \emph{Chapter} : 06
 
 }
 \usage{data(Mafia)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{province}{the province (95)}
     \item{region}{the region (19)}
@@ -35,14 +36,10 @@
     \item{murder}{first difference of the number of people reported by the police forces to the judicial authority because of murder related to mafia activity}
   }
 }
-\source{
-    American Economic Association data archive : \url{http://aeaweb.org/aer/}.
-
-}
+\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
 \references{
-    Acconcia, Antonio,  Giancarlo   Corsetti and  Saviero  Simonelli (2014) \dQuote{Mafia and public spending: evidence on the fiscal multimplier form a quasi-experiment}, \emph{American Economic Review}, \bold{104(7)}, 2189-2209.
+Acconcia, Antonio; Corsetti, Giancarlo and Saviero Simonelli (2014) \dQuote{Mafia and Public Spending: Evidence on the Fiscal Multimplier Form a Quasi-experiment}, \emph{American Economic Review}, \bold{104(7)}, 2189-2209, \doi{10.1257/aer.104.7.2185}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
-
-}\keyword{datasets}
+\keyword{datasets}

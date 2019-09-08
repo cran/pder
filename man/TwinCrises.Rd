@@ -1,19 +1,22 @@
 \name{TwinCrises}
 \docType{data}
 \alias{TwinCrises}
-\title{Costs of Currency and Banking Crises }
-\description{
-  yearly observations of  22 countries from 1970  to 1997
+\title{Costs of Currency and Banking Crises}
+\description{yearly observations of 22 countries from 1970 to 1997
 
- \emph{number of observations} :  616
+    \emph{number of observations} : 616
 
-\emph{economic topic} : financial economics
+    \emph{number of  time-series } :  28 
 
-\emph{econometrics topic} : endogeneity
+    \emph{country} :  
+
+    \emph{JEL codes: }F32, G15, G21, O16, O19, O47
+
+    \emph{Chapter} : 06
 
 }
 \usage{data(TwinCrises)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{country}{the country name}
     \item{year}{the year}
@@ -29,14 +32,9 @@
     \item{area}{a factor with levels 'other', 'asia' and 'latam' (for latin America)}
   }
 }
-\source{
-    Journal Money, Credit and Banking data archive : \url{http://jmcb.osu.edu}.
-
-}
+\source{Journal of Money, Credit and Banking : \url{https://jmcb.osu.edu/archive/}}
 \references{
-    Hutchison, Michael M.  and  Ilan  Noy (2005) \dQuote{How bad are twins ? Output costs of currency and banking crises}, \emph{Journal of Money, Credit and Banking}, \bold{37(4)}, 725--752.
+Hutchison, Michael M. and Ilan Noy (2005) \dQuote{How Bad Are Twins ? Output Costs of Currency and Banking Crises}, \emph{Journal of Money, Credit and Banking}, \bold{37(4)}, 725--752.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
-
-}\keyword{datasets}
+\keyword{datasets}

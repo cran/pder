@@ -1,21 +1,22 @@
 \name{TurkishBanks}
 \docType{data}
 \alias{TurkishBanks}
-\title{Turkish Banks }
-\description{
-  yearly observations of  53 banks from 1990  to 2000
+\title{Turkish Banks}
+\description{yearly observations of 53 banks from 1990 to 2000
 
- \emph{number of observations} :  583
+    \emph{number of observations} : 583
 
-   \emph{country} :  Turkey
+    \emph{number of  time-series } :  11 
 
-\emph{economic topic} : microeconomics
+    \emph{country} :  Turkey 
 
-\emph{econometrics topic} : seemingly unrelated regression
+    \emph{JEL codes: }D24, G21, L33
+
+    \emph{Chapter} : 02
 
 }
 \usage{data(TurkishBanks)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{id}{bank id}
     \item{year}{the years}
@@ -41,14 +42,26 @@
     \item{ts}{total securities (only for conventional banks)}
   }
 }
-\source{
-    Journal of Applied Econometrics data archive : \url{http://jae.wiley.com/jae/}.
-
-}
+\source{Journal of Applied Econometrics Data Archive : \url{http://qed.econ.queensu.ca/jae/}}
 \references{
-    Mahmoud A. El-Gamal and Hulusi Inanoglu, (2005) \dQuote{Inefficiency and Heterogeneity in Turkish Banking: 1990-2000}, \emph{Journal of Applied Econometrics}, \bold{20(5)}, 641--664.
+Mahmoud A. El-Gamal and Hulusi Inanoglu (2005) \dQuote{Inefficiency and Heterogeneity in Turkish Banking: 1990-2000}, \emph{Journal of Applied Econometrics}, \bold{20(5)}, 641--664, \doi{10.1002/jae.835}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
+\keyword{datasets}
+\examples{
+#### Example 2-5
 
-}\keyword{datasets}
+## ------------------------------------------------------------------------
+data("TurkishBanks", package = "pder")
+library("plm")
+TurkishBanks <- na.omit(TurkishBanks)
+TB <- pdata.frame(TurkishBanks)
+summary(log(TB$output))
+ercomp(log(cost) ~ log(output), TB)
+models <- c("within", "random", "pooling", "between")
+sapply(models, function(x)
+       coef(plm(log(cost) ~ log(output), TB, model = x))["log(output)"])
+
+}
+

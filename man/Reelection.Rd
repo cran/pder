@@ -1,25 +1,26 @@
 \name{Reelection}
 \docType{data}
 \alias{Reelection}
-\title{Deficits and Reelection }
-\description{
-  yearly observations of  75 countries from 1960  to 2003
+\title{Deficits and Reelection}
+\description{yearly observations of 75 countries from 1960 to 2003
 
- \emph{number of observations} :  439
+    \emph{number of observations} : 439
 
-   \emph{country} :  world
+    \emph{number of  time-series } :  16 
 
-\emph{economic topic} : public economics
+    \emph{country} :  world 
 
-\emph{econometrics topic} : binomial variable
+    \emph{JEL codes: }D72, E62, H62, O47
+
+    \emph{Chapter} : 08
 
 }
 \usage{data(Reelection)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{country}{the country}
     \item{year}{the year}
-    \item{narrow}{\code{TRUE} if the observation belongs to the narrow data set }
+    \item{narrow}{\code{TRUE} if the observation belongs to the narrow data set}
     \item{reelect}{one if the incumbent was reelected and zero otherwise}
     \item{ddefterm}{the change in the ratio of the government surplus to gdp in the two years preeceding the election year, relative to the two previous years}
     \item{ddefey}{the change in the government surplus ratio to gdpin the election year, compared to the previous year}
@@ -29,14 +30,39 @@
     \item{maj}{one for majoritarian electoral system, 0 otherwise}
   }
 }
-\source{
-    american economic association's website \url{http://www.aeaweb.org}.
-
-}
+\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
 \references{
-    Adi Brender and Allan Drazen, (2008) \dQuote{Budget deficits and economic growth affect reelection prospects? Evidence froma large panel of countries}, \emph{American Economic Review}, \bold{98(5)}, 2203-2220.
+Adi Brender and Allan Drazen (2008) \dQuote{How Do Budget Deficits and Economic Growth Affect Reelection Prospects? Evidence From a Large Panel of Countries}, \emph{American Economic Review}, \bold{98(5)}, 2203-2220, \doi{10.1257/aer.98.5.2203}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
+\keyword{datasets}
+\examples{
 
-}\keyword{datasets}
+
+#### Example 8-1
+
+## ------------------------------------------------------------------------
+library("plm")
+data("Reelection", package = "pder")
+
+## ------------------------------------------------------------------------
+elect.l <- glm(reelect ~ ddefterm + ddefey + gdppc + dev + nd + maj, 
+          data = Reelection, family = "binomial", subset = narrow)
+l2 <- update(elect.l, family = binomial)
+l3 <- update(elect.l, family = binomial())
+l4 <- update(elect.l, family = binomial(link = 'logit'))
+
+## ------------------------------------------------------------------------
+elect.p <- update(elect.l, family = binomial(link = 'probit'))
+
+## ------------------------------------------------------------------------
+library("pglm")
+elect.pl <- pglm(reelect ~ ddefterm + ddefey + gdppc + dev + nd + maj, 
+                Reelection, family = binomial(link = 'logit'), 
+                subset = narrow)
+elect.pp <- pglm(reelect ~ ddefterm + ddefey + gdppc + dev + nd + maj, 
+                Reelection, family = binomial(link = 'probit'), 
+                subset = narrow)
+}
+

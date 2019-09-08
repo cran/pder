@@ -1,19 +1,22 @@
 \name{IneqGrowth}
 \docType{data}
 \alias{IneqGrowth}
-\title{Inequality and Growth }
-\description{
-  5-yearly observations of  266   from 1961  to 1995
+\title{Inequality and Growth}
+\description{5-yearly observations of 266 world from 1961 to 1995
 
- \emph{number of observations} :  1862
+    \emph{number of observations} : 1862
 
-\emph{economic topic} : economic development, innovation, technological change, and growth
+    \emph{number of  time-series } :  7 
 
-\emph{econometrics topic} : dynamic model
+    \emph{country} :  country 
+
+    \emph{JEL codes: }O47, O15, C23, C33, O16
+
+    \emph{Chapter} : 07
 
 }
 \usage{data(IneqGrowth)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{country}{country name}
     \item{period}{the period}
@@ -25,16 +28,13 @@
     \item{gini}{gini index}
   }
 }
-\source{
-    \url{http://www.cgdev.org/content/publications/detail/14256}.
-
-}
+\source{\url{http://www.cgdev.org/content/publications/detail/14256}}
 \references{
-    Forbes, Kristin J. (2000) \dQuote{A Reassessment of the relationship between inequality and growth}, \emph{American Economic Association}, \bold{90(4)}, 869-887.
+Forbes, Kristin J. (2000) \dQuote{A Reassessment of the Relationship Between Inequality and Growth}, \emph{American Economic Review}, \bold{90(4)}, 869-887, \doi{10.1257/aer.90.4.869}
+.
 
-    Roodman, David (2009) \dQuote{A note on the theme of two many instruments}, \emph{Oxford Bulletin of Economics an Statistics}, \bold{71(1)}, 135--158.
+Roodman, David (2009) \dQuote{A Note on the Theme of Two Many Instruments}, \emph{Oxford Bulletin of Economics An Statistics}, \bold{71(1)}, 135--158, \doi{10.1111/j.1468-0084.2008.00542.x}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
-
-}\keyword{datasets}
+\keyword{datasets}

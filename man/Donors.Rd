@@ -1,21 +1,22 @@
-\name{Donnors}
+\name{Donors}
 \docType{data}
-\alias{Donnors}
-\title{Dynamics of Charitable Giving }
-\description{
-  a cross-section
+\alias{Donors}
+\title{Dynamics of Charitable Giving}
+\description{a pseudo-panel of 32 individuals
 
- \emph{number of observations} :  1039
+    \emph{number of observations} : 1039
 
-   \emph{country} :  United States
+    \emph{number of  individual observations } :  4-80 
 
-\emph{economic topic} : microeconomics
+    \emph{country} :  United States 
 
-\emph{econometrics topic} : censored and truncated variable
+    \emph{JEL codes: }C93, D64, D82, H41, L31, Z12
+
+    \emph{Chapter} : 08
 
 }
-\usage{data(Donnors)}
-\format{A dataframe containing :
+\usage{data(Donors)}
+\format{A dataframe containing:
   \describe{
     \item{id}{the id of the sollicitor}
     \item{solsex}{the sex of the sollicitor}
@@ -41,14 +42,28 @@
     \item{prbeauty}{beauty rating for the sollicitor of the previous campaign}
   }
 }
-\source{
-    American Economic Journal data archive : \url{http://aeaweb.org/aer/}.
-
-}
+\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
 \references{
-    Landry, Craig E.,  Andreas   Lange,  John A.   List,  Michael K.   Price and  Nicholas G.  Rupp (2010) \dQuote{Is a donor in hand better than two in the bush ? Evidence from a natural field experiment}, \emph{American Economic Review}, \bold{100(3)}, 958--983.
+Landry, Craig E.; Lange, Andreas; List, John A.; Price, Michael K. and Nicholas G. Rupp (2010) \dQuote{Is a Donor in Hand Better Than Two in the Bush ? Evidence From a Natural Field Experiment}, \emph{American Economic Review}, \bold{100(3)}, 958--983, \doi{10.1257/aer.100.3.958}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
+\keyword{datasets}
+\examples{
 
-}\keyword{datasets}
+#### Example 8-5
+
+## ------------------------------------------------------------------------
+\dontrun{
+data("Donors", package = "pder")
+library("plm")
+T3.1 <- plm(donation ~ treatment +  prcontr, Donors, index = "id")
+T3.2 <- plm(donation ~ treatment * prcontr - prcontr, Donors, index = "id")
+T5.A <- pldv(donation ~ treatment +  prcontr, Donors, index = "id", 
+             model = "random", method = "bfgs")
+T5.B <- pldv(donation ~ treatment * prcontr - prcontr, Donors, index = "id", 
+             model = "random", method = "bfgs")
+}
+
+}
+

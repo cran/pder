@@ -1,25 +1,26 @@
 \name{LandReform}
 \docType{data}
 \alias{LandReform}
-\title{Politics and Land Reforms in India }
-\description{
-  yearly observations of  89 villages from 1974  to 2003
+\title{Politics and Land Reforms in India}
+\description{yearly observations of 89 villages from 1974 to 2003
 
- \emph{number of observations} :  2670
+    \emph{number of observations} : 2670
 
-   \emph{country} :  India
+    \emph{number of  time-series } :  30 
 
-\emph{economic topic} : agricultural and natural resource economics, environmental and ecological economics
+    \emph{country} :  India 
 
-\emph{econometrics topic} : censored and truncated variable
+    \emph{JEL codes: }D72, O13, O17, Q15
+
+    \emph{Chapter} : 08
 
 }
 \usage{data(LandReform)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{mouza}{village id number}
-    \item{year}{year}
-    \item{district}{district}
+    \item{year}{Year}
+    \item{district}{District}
     \item{rplacul}{ratio of patta land registered to operational land}
     \item{rpdrhh}{ratio of pattadar households to total households (hh)}
     \item{rblacul}{ratio of barga land registered to operational land}
@@ -35,30 +36,26 @@
     \item{ercubgol}{ratio of land above 12.5 acres cultivable}
     \item{erillnb}{interpolated ratio of illiterate non big hh}
     \item{erlow}{interpolated ratio of low caste hh}
-    \item{ratleft0}{left Front share in GP, == 0 for 1974}
-    \item{dwalfco}{assembly average vote difference LF-INC, district}
-    \item{inflat}{inflation  in last 5 years in CPI for Agricultural Labourers}
-    \item{smfempyv}{year variation in Employment in Small Scale Industrial Units registered with Dir}
-    \item{incseats}{iNC seats / Total seats in Lok Sabha}
-    \item{lfseats}{ratio of LF seats in parliament}
-    \item{inflflag}{interaction between Inflation and ratleft lagged}
-    \item{inclflag}{interaction between INC seats and ratleft lagged}
-    \item{lflflag}{interaction between LF seats and ratleft lagged}
-    \item{ratleft}{left Front share in GP, ==share of assembly seats for 1974}
+    \item{ratleft0}{Left Front share in GP, == 0 for 1974}
+    \item{dwalfco}{Assembly average vote difference LF-INC, district}
+    \item{inflat}{Inflation  in last 5 years in CPI for Agricultural Labourers}
+    \item{smfempyv}{Year variation in Employment in Small Scale Industrial Units registered with Dir}
+    \item{incseats}{INC seats / Total seats in Lok Sabha}
+    \item{lfseats}{Ratio of LF seats in parliament}
+    \item{inflflag}{Interaction between Inflation and ratleft lagged}
+    \item{inclflag}{Interaction between INC seats and ratleft lagged}
+    \item{lflflag}{Interaction between LF seats and ratleft lagged}
+    \item{ratleft}{Left Front share in GP, ==share of assembly seats for 1974}
     \item{infiw}{to complete}
     \item{infumme}{to complete}
     \item{infal}{to complete}
-    \item{gp}{gran Panchayat}
+    \item{gp}{Gran Panchayat}
   }
 }
-\source{
-    American Economic Journal data archive : \url{http://aeaweb.org/aer/}.
-
-}
+\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
 \references{
-    Bardhan, Pranab  and  Dilip  Mookherjee (2010) \dQuote{Determinants of redistributive politics: an empirical analysis of land reform in west Bengal, India}, \emph{American Economic Review}, \bold{100(4)}, 1572--1600.
+Bardhan, Pranab and Dilip Mookherjee (2010) \dQuote{Determinants of Redistributive Politics: An Empirical Analysis of Land Reform in West Bengal, India}, \emph{American Economic Review}, \bold{100(4)}, 1572--1600, \doi{10.1257/aer.100.4.1572}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
-
-}\keyword{datasets}
+\keyword{datasets}

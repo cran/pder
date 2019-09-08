@@ -1,37 +1,34 @@
 \name{CallBacks}
 \docType{data}
 \alias{CallBacks}
-\title{Callbacks to Job Applications }
-\description{
-  a cross-section
+\title{Callbacks to Job Applications}
+\description{a pseudo-panel of 1518 resumes
 
- \emph{number of observations} :  6072
+    \emph{number of observations} : 6072
 
-   \emph{country} :  United States
+    \emph{number of  individual observations } :  4 
 
-\emph{economic topic} : labor and demographic economics
+    \emph{country} :  United States 
 
-\emph{econometrics topic} : binomial variable
+    \emph{JEL codes: }E24, E32, J14, J22, J23, J64
+
+    \emph{Chapter} : 08
 
 }
 \usage{data(CallBacks)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
     \item{jobid}{the job index}
-    \item{unempdur}{unemployment duration in month}
+    \item{unempdur}{unemployment  duration in month}
     \item{interim}{a dummy for interim experience}
     \item{callback}{a dummy for call backs}
     \item{old}{a dummy for age 57-58}
   }
 }
-\source{
-    American Economic Association's website \url{http://www.aeaweb.org}.
-
-}
+\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
 \references{
-    Farber, Henry S.,  Dan   Silverman and  Till  von Wachter (2016) \dQuote{Determinants of callbacks to job applications: an audit study}, \emph{American Economic Review}, \bold{106(5)}, 314-318.
+Farber, Henry S.; Silverman, Dan and Till von Wachter (2016) \dQuote{Determinants of Callbacks to Job Applications: An Audit Study}, \emph{American Economic Review}, \bold{106(5)}, 314-318, \doi{10.1257/aer.p20161010}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
-
-}\keyword{datasets}
+\keyword{datasets}

@@ -1,23 +1,24 @@
 \name{ScrambleAfrica}
 \docType{data}
 \alias{ScrambleAfrica}
-\title{the Long-run Effects of the Scramble for Africa }
-\description{
-  a cross-section
+\title{The Long-run Effects of the Scramble for Africa}
+\description{a pseudo-panel of 49 countries
 
- \emph{number of observations} :  1212
+    \emph{number of observations} : 1212
 
-   \emph{country} :  Africa
+    \emph{number of  individual observations } :  2-112 
 
-\emph{economic topic} : economic development, innovation, technological change, and growth
+    \emph{country} :  Africa 
 
-\emph{econometrics topic} : count data
+    \emph{JEL codes: }D72, D74, F51, J15, O15, O17, Z13
+
+    \emph{Chapter} : 08
 
 }
 \usage{data(ScrambleAfrica)}
-\format{A dataframe containing :
+\format{A dataframe containing:
   \describe{
-    \item{country}{ country code}
+    \item{country}{country code}
     \item{group}{ethnic group name}
     \item{conflicts}{number of conflicts}
     \item{split}{dummy for partitioned ethnic area}
@@ -41,10 +42,10 @@
     \item{city1400}{dummy for areas with major city in 1400}
   }
 }
+\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
 \references{
-    Michalopoulos, Stelios  and  Elias  Papaioannou (2016) \dQuote{The long-run effects of the scramble for Africa}, \emph{American Economic Review}, \bold{106(7)}, 1802--1848.
+Michalopoulos, Stelios and Elias Papaioannou (2016) \dQuote{The Long-run Effects of the Scramble for Africa}, \emph{American Economic Review}, \bold{106(7)}, 1802--1848, \doi{10.1257/aer.20131311}
+.
 
 }
-\seealso{\code{\link{Index.Economics}}, \code{\link{Index.Econometrics}}
-
-}\keyword{datasets}
+\keyword{datasets}
