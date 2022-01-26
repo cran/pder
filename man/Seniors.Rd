@@ -10,6 +10,8 @@
 
     \emph{country} :  France 
 
+    \emph{package} : panellimdep
+
     \emph{JEL codes: }C90, J14, J26, M12, M51
 
     \emph{Chapter} : 08
@@ -66,7 +68,7 @@
     \item{heterogend}{1 if the group mixes the two generations, 0 otherwise}
   }
 }
-\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
+\source{American Economic Association Data Archive : \url{https://www.aeaweb.org/aer/}}
 \references{
 Charness, Gary and Marie-Claire Villeval (2009) \dQuote{Cooperation and Competition in Intergenerational Experiments in the Field and the Laboratory}, \emph{American Economic Review}, \bold{99(3)}, 956--978, \doi{10.1257/aer.99.3.956}
 .

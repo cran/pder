@@ -10,6 +10,8 @@
 
     \emph{country} :  developing countries 
 
+    \emph{package} : panelivreg
+
     \emph{JEL codes: }O19, C51, F17
 
     \emph{Chapter} : 02, 06

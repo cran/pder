@@ -10,6 +10,8 @@
 
     \emph{country} :  oecd 
 
+    \emph{package} : panel
+
     \emph{JEL codes: }D72, H23, H71, H73, H77, R12, R23
 
     \emph{Chapter} : 07
@@ -32,7 +34,7 @@
     \item{transaut}{sub-national non autonomous revenues as share of total government revenues}
   }
 }
-\source{Review of Economic Studies' web site \url{http://restud.oxfordjournals.org/}}
+\source{Review of Economic Studies' web site \url{https://academic.oup.com/restud}}
 \references{
 Anke S. Kessler and Nico A. Hansen and Christian Lessmann (2011) \dQuote{Interregional Redistribution and Mobility in Federations: a Positive Approach}, \emph{Review of Economic Studies}, \bold{78(4)}, 1345-1378, \doi{10.1093/restud/rdr003}
 .

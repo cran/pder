@@ -10,6 +10,8 @@
 
     \emph{country} :  Italy 
 
+    \emph{package} : panelivreg
+
     \emph{JEL codes: }D72, E62, H71, K42
 
     \emph{Chapter} : 06
@@ -36,7 +38,7 @@
     \item{murder}{first difference of the number of people reported by the police forces to the judicial authority because of murder related to mafia activity}
   }
 }
-\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
+\source{American Economic Association Data Archive : \url{https://www.aeaweb.org/aer/}}
 \references{
 Acconcia, Antonio; Corsetti, Giancarlo and Saviero Simonelli (2014) \dQuote{Mafia and Public Spending: Evidence on the Fiscal Multimplier Form a Quasi-experiment}, \emph{American Economic Review}, \bold{104(7)}, 2189-2209, \doi{10.1257/aer.104.7.2185}
 .

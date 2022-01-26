@@ -10,6 +10,8 @@
 
     \emph{country} :  United States 
 
+    \emph{package} : limdeppanel
+
     \emph{JEL codes: }C78, D72, H61, H72
 
     \emph{Chapter} : 08
@@ -45,7 +47,7 @@
     \item{deadline}{is there a deadline ? one of 'none', 'soft' and 'hard'}
   }
 }
-\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
+\source{American Economic Association Data Archive : \url{https://www.aeaweb.org/aer/}}
 \references{
 Andersen, Asger Lau; Lassen, David Dreyer and Lasse Holboll Westh Nielsen (2012) \dQuote{Late Budgets}, \emph{American Economic Journal, Economic Policy}, \bold{4(4)}, 1-40, \doi{10.1257/pol.4.4.1}
 .

@@ -10,6 +10,8 @@
 
     \emph{country} :  United States 
 
+    \emph{package} : hedprice
+
     \emph{JEL codes: }C51, R31
 
     \emph{Chapter} : 09, 10
@@ -30,7 +32,7 @@
     \item{intrate}{real interest rate on borrowing}
   }
 }
-\source{Journal of Applied Econometrics data archive : \url{http://jae.wiley.com/jae/}}
+\source{Journal of Applied Econometrics Data Archive : \url{http://qed.econ.queensu.ca/jae/}}
 \references{
 Holly, S.; Pesaran, M.G. and T. Yamagata (2010) \dQuote{A Spatio-temporal Model of House Prices in the USA}, \emph{Journal of Econometrics}, \bold{158(1)}, 160--173, \doi{10.1016/j.jeconom.2010.03.040}
 .
@@ -44,6 +46,7 @@ Millo, Giovanni (2015) \dQuote{Narrow Replication of 'spatio-temporal Model of H
 #### Example 4-11
 
 ## ------------------------------------------------------------------------
+\dontrun{
 data("HousePricesUS", package = "pder")
 library("plm")
 php <- pdata.frame(HousePricesUS)
@@ -77,23 +80,26 @@ coefs
 #### Example 9-3
 
 ## ------------------------------------------------------------------------
-library("texreg")
-data("RDSpillovers", package = "pder")
-fm.rds <- lny ~ lnl + lnk + lnrd
-mg.rds <- pmg(fm.rds, RDSpillovers, trend = TRUE)
-dmg.rds <- update(mg.rds, . ~ lag(lny) + .)
-screenreg(list('Static MG' = mg.rds, 'Dynamic MG'= dmg.rds), digits = 3)
 
-## ------------------------------------------------------------------------
-library("msm")
-b.lr <- coef(dmg.rds)["lnrd"]/(1 - coef(dmg.rds)["lag(lny)"])
-SEb.lr <- deltamethod(~ x5 / (1 - x2),
-                      mean = coef(dmg.rds), cov = vcov(dmg.rds))
-z.lr <- b.lr / SEb.lr
-pval.lr <- 2 * pnorm(abs(z.lr), lower.tail = FALSE)
-lr.lnrd <- matrix(c(b.lr, SEb.lr, z.lr, pval.lr), nrow=1)
-dimnames(lr.lnrd) <- list("lnrd (long run)", c("Est.", "SE", "z", "p.val"))
-round(lr.lnrd, 3)
+if (requireNamespace("texreg")){
+    library("texreg")
+    data("RDSpillovers", package = "pder")
+    fm.rds <- lny ~ lnl + lnk + lnrd
+    mg.rds <- pmg(fm.rds, RDSpillovers, trend = TRUE)
+    dmg.rds <- update(mg.rds, . ~ lag(lny) + .)
+    screenreg(list('Static MG' = mg.rds, 'Dynamic MG'= dmg.rds), digits = 3)
+    if (requireNamespace("msm")){
+        library("msm")
+        b.lr <- coef(dmg.rds)["lnrd"]/(1 - coef(dmg.rds)["lag(lny)"])
+        SEb.lr <- deltamethod(~ x5 / (1 - x2),
+                              mean = coef(dmg.rds), cov = vcov(dmg.rds))
+        z.lr <- b.lr / SEb.lr
+        pval.lr <- 2 * pnorm(abs(z.lr), lower.tail = FALSE)
+        lr.lnrd <- matrix(c(b.lr, SEb.lr, z.lr, pval.lr), nrow=1)
+        dimnames(lr.lnrd) <- list("lnrd (long run)", c("Est.", "SE", "z", "p.val"))
+        round(lr.lnrd, 3)
+    }
+}
 
 
 #### Example 9-4
@@ -106,9 +112,11 @@ housep.within <- plm(log(price) ~ log(income), data = HousePricesUS, model = "wi
 d <- data.frame(x = c(coef(housep.np)[[1]], coef(housep.np)[[2]]), 
                 coef = rep(c("intercept", "log(income)"), 
                            each = nrow(coef(housep.np))))
-library("ggplot2")
-ggplot(d, aes(x)) + geom_histogram(col = "black", fill = "white", bins = 8) +
-    facet_wrap(~ coef, scales = "free") + xlab("") + ylab("")
+if (requireNamespace("ggplot2")){
+    library("ggplot2")
+    ggplot(d, aes(x)) + geom_histogram(col = "black", fill = "white", bins = 8) +
+        facet_wrap(~ coef, scales = "free") + xlab("") + ylab("")
+}
 
 
 ## ------------------------------------------------------------------------
@@ -200,15 +208,18 @@ php <- pdata.frame(HousePricesUS)
 pcdtest(php$price, w = usaw49)
 
 ## ------------------------------------------------------------------------
-library("splm")
-rwtest(php$price, w = usaw49, replications = 999)
+
+if (requireNamespace("splm")){
+    library("splm")
+    rwtest(php$price, w = usaw49, replications = 999)
+}
 
 ## ------------------------------------------------------------------------
 mgmod <- pmg(log(price) ~ log(income), data = HousePricesUS)
 ccemgmod <- pmg(log(price) ~ log(income), data = HousePricesUS, model = "cmg")
 pcdtest(resid(ccemgmod), w = usaw49)
 rwtest(resid(mgmod), w = usaw49, replications = 999)
-
+}
 
 }
 

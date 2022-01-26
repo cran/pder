@@ -2,13 +2,15 @@
 \docType{data}
 \alias{Donors}
 \title{Dynamics of Charitable Giving}
-\description{a pseudo-panel of 32 individuals
+\description{a pseudo-panel of 32 individuals from 2006
 
     \emph{number of observations} : 1039
 
     \emph{number of  individual observations } :  4-80 
 
     \emph{country} :  United States 
+
+    \emph{package} : limdeppanel
 
     \emph{JEL codes: }C93, D64, D82, H41, L31, Z12
 
@@ -42,7 +44,7 @@
     \item{prbeauty}{beauty rating for the sollicitor of the previous campaign}
   }
 }
-\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
+\source{American Economic Association Data Archive : \url{https://www.aeaweb.org/aer/}}
 \references{
 Landry, Craig E.; Lange, Andreas; List, John A.; Price, Michael K. and Nicholas G. Rupp (2010) \dQuote{Is a Donor in Hand Better Than Two in the Bush ? Evidence From a Natural Field Experiment}, \emph{American Economic Review}, \bold{100(3)}, 958--983, \doi{10.1257/aer.100.3.958}
 .

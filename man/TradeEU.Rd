@@ -10,6 +10,8 @@
 
     \emph{country} :  Europe 
 
+    \emph{package} : gravity
+
     \emph{JEL codes: }C51, F14
 
     \emph{Chapter} : 06
@@ -38,7 +40,7 @@
     \item{frer}{the time specific common factors (individual means) of the variables rer}
   }
 }
-\source{Journal of Applied Econometrics data archive : \url{http://jae.wiley.com/jae/}}
+\source{Journal of Applied Econometrics Data Archive : \url{http://qed.econ.queensu.ca/jae/}}
 \references{
 Serlenga, Laura and Yongcheol Shin (2007) \dQuote{Gravity Models of Intra-eu Trade: Application of the Ccep-ht Estimation in Heterogenous Panels with Unobserved Common Time-specific Factors}, \emph{Journal of Applied Econometrics}, \bold{22}, 361--381, \doi{10.1002/jae.944}
 .
@@ -49,6 +51,7 @@ Serlenga, Laura and Yongcheol Shin (2007) \dQuote{Gravity Models of Intra-eu Tra
 #### Example 6-3
 
 ## ------------------------------------------------------------------------
+\dontrun{
 data("TradeEU", package = "pder")
 library("plm")
 
@@ -82,5 +85,6 @@ ht2am <- update(ht2, inst.method = "am")
 
 ## ------------------------------------------------------------------------
 phtest(ht2am, fe)
+}
 }
 

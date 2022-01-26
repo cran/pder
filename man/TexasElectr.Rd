@@ -10,6 +10,8 @@
 
     \emph{country} :  Texas 
 
+    \emph{package} : productionpanel
+
     \emph{JEL codes: }D24, C13, C51, C23, J31
 
     \emph{Chapter} : 02, 03
@@ -59,46 +61,49 @@ sapply(models, function(x)
 
 ## ------------------------------------------------------------------------
 data("TexasElectr", package = "pder")
-library("dplyr")
-TexasElectr <- mutate(TexasElectr,
-                      pf = log(pfuel / mean(pfuel)),
-                      pl = log(plab / mean(plab)) - pf,
-                      pk = log(pcap / mean(pcap)) - pf)
+
+if (requireNamespace("dplyr")){
+    library("dplyr")
+    TexasElectr <- mutate(TexasElectr,
+                          pf = log(pfuel / mean(pfuel)),
+                          pl = log(plab / mean(plab)) - pf,
+                          pk = log(pcap / mean(pcap)) - pf)
 
 ## ------------------------------------------------------------------------
-TexasElectr <- mutate(TexasElectr, q = log(output / mean(output)))
+    TexasElectr <- mutate(TexasElectr, q = log(output / mean(output)))
 
 ## ------------------------------------------------------------------------
-TexasElectr <- mutate(TexasElectr,
-                      C = expfuel + explab + expcap,
-                      sl = explab / C,
-                      sk = expcap / C,
-                      C = log(C / mean(C)) - pf)
+    TexasElectr <- mutate(TexasElectr,
+                          C = expfuel + explab + expcap,
+                          sl = explab / C,
+                          sk = expcap / C,
+                          C = log(C / mean(C)) - pf)
+    
+## ------------------------------------------------------------------------
+    TexasElectr <- mutate(TexasElectr,
+                          pll = 1/2 * pl ^ 2,
+                          plk = pl * pk,
+                          pkk = 1/2 * pk ^ 2,
+                          qq = 1/2 * q ^ 2)
 
 ## ------------------------------------------------------------------------
-TexasElectr <- mutate(TexasElectr,
-                      pll = 1/2 * pl ^ 2,
-                      plk = pl * pk,
-                      pkk = 1/2 * pk ^ 2,
-                      qq = 1/2 * q ^ 2)
+    cost <- C ~ pl + pk + q + pll + plk + pkk + qq
+    shlab <- sl ~ pl + pk
+    shcap <- sk ~ pl + pk
 
 ## ------------------------------------------------------------------------
-cost <- C ~ pl + pk + q + pll + plk + pkk + qq
-shlab <- sl ~ pl + pk
-shcap <- sk ~ pl + pk
+    R <- matrix(0, nrow = 6, ncol = 14)
+    R[1, 2] <- R[2, 3] <- R[3, 5] <- R[4, 6] <- R[5, 6] <- R[6, 7] <- 1
+    R[1, 9] <- R[2, 12] <- R[3, 10] <- R[4, 11] <- R[5, 13] <- R[6, 14] <- -1
 
 ## ------------------------------------------------------------------------
-R <- matrix(0, nrow = 6, ncol = 14)
-R[1, 2] <- R[2, 3] <- R[3, 5] <- R[4, 6] <- R[5, 6] <- R[6, 7] <- 1
-R[1, 9] <- R[2, 12] <- R[3, 10] <- R[4, 11] <- R[5, 13] <- R[6, 14] <- -1
-
-## ------------------------------------------------------------------------
-z <- plm(list(cost = C ~ pl + pk + q + pll + plk + pkk + qq,
-              shlab = sl ~ pl + pk,
-              shcap = sk ~ pl + pk),
-         TexasElectr, model = "random",
-         restrict.matrix = R)
-summary(z)
+    z <- plm(list(cost = C ~ pl + pk + q + pll + plk + pkk + qq,
+                  shlab = sl ~ pl + pk,
+                  shcap = sk ~ pl + pk),
+             TexasElectr, model = "random",
+             restrict.matrix = R)
+    summary(z)
+}
 
 }
 

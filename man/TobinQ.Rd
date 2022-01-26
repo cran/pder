@@ -2,13 +2,15 @@
 \docType{data}
 \alias{TobinQ}
 \title{The Q Theory of Investment}
-\description{yearly observations of 188  from 1951 to 1985
+\description{yearly observations of 188 firms from 1951 to 1985
 
     \emph{number of observations} : 6580
 
     \emph{number of  time-series } :  35 
 
     \emph{country} :  United States 
+
+    \emph{package} : panel
 
     \emph{Chapter} : 02
 
@@ -44,6 +46,7 @@ Schaller, Huntley (1990) \dQuote{A Re-examination of the Q Theory of Investment 
 #### Example 2-1
 
 ## ------------------------------------------------------------------------
+\dontrun{
 library("plm")
 data("TobinQ", package = "pder")
 
@@ -143,6 +146,6 @@ pondW * coef(Q.within)[["qn"]] +
 Q.models2 <- lapply(Q.models, function(x) update(x, effect = "twoways"))
 sapply(Q.models2, function(x) sqrt(ercomp(x)$sigma2))
 sapply(Q.models2, function(x) ercomp(x)$theta)
-
+}
 }
 

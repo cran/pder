@@ -10,6 +10,8 @@
 
     \emph{country} :  world 
 
+    \emph{package} : panel
+
     \emph{JEL codes: }D72, O47
 
     \emph{Chapter} : 02, 07
@@ -24,7 +26,7 @@
     \item{income}{the log of the gdp per capita}
   }
 }
-\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
+\source{American Economic Association Data Archive : \url{https://www.aeaweb.org/aer/}}
 \references{
 Daron Acemoglu, Simon Johnson, James A. Robinson and Pierre Yared (2008) \dQuote{Income and Democracy}, \emph{American Economic Review}, \bold{98(3)}, 808-842, \doi{10.1257/aer.98.3.808}
 .

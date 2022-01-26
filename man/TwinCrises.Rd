@@ -8,7 +8,9 @@
 
     \emph{number of  time-series } :  28 
 
-    \emph{country} :  
+    \emph{country} :  world 
+
+    \emph{package} : panel
 
     \emph{JEL codes: }F32, G15, G21, O16, O19, O47
 
@@ -32,7 +34,7 @@
     \item{area}{a factor with levels 'other', 'asia' and 'latam' (for latin America)}
   }
 }
-\source{Journal of Money, Credit and Banking : \url{https://jmcb.osu.edu/archive/}}
+\source{Journal of Money, Credit and Banking : \url{https://jmcb.osu.edu/archive}}
 \references{
 Hutchison, Michael M. and Ilan Noy (2005) \dQuote{How Bad Are Twins ? Output Costs of Currency and Banking Crises}, \emph{Journal of Money, Credit and Banking}, \bold{37(4)}, 725--752.
 

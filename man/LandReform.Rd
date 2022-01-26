@@ -10,6 +10,8 @@
 
     \emph{country} :  India 
 
+    \emph{package} : panellimdep
+
     \emph{JEL codes: }D72, O13, O17, Q15
 
     \emph{Chapter} : 08
@@ -52,7 +54,7 @@
     \item{gp}{Gran Panchayat}
   }
 }
-\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
+\source{American Economic Association Data Archive : \url{https://www.aeaweb.org/aer/}}
 \references{
 Bardhan, Pranab and Dilip Mookherjee (2010) \dQuote{Determinants of Redistributive Politics: An Empirical Analysis of Land Reform in West Bengal, India}, \emph{American Economic Review}, \bold{100(4)}, 1572--1600, \doi{10.1257/aer.100.4.1572}
 .

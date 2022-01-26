@@ -6,6 +6,8 @@
 
     \emph{country} :  world 
 
+    \emph{package} : panel
+
     \emph{JEL codes: }C51, D24, O32, O33
 
     \emph{Chapter} : 04, 05, 09
@@ -35,6 +37,7 @@ Eberhardt, M.; Helmers, C. and H. Strauss (2013) \dQuote{Do Spillovers Matter in
 #### Example 4-10
 
 ## ------------------------------------------------------------------------
+\dontrun{
 data("RDSpillovers", package = "pder")
 library("plm")
 fm.rds <- lny ~ lnl + lnk + lnrd
@@ -69,43 +72,44 @@ phtest(ehsfm, pehs, method = "aux", vcov = vcovHC)
 fm <- lny ~ lnl + lnk + lnrd
 
 ## ------------------------------------------------------------------------
-library("lmtest")
-gglsmodehs <- pggls(fm, RDSpillovers, model = "pooling")
-coeftest(gglsmodehs)
 
-## ------------------------------------------------------------------------
-feglsmodehs <- pggls(fm, RDSpillovers, model = "within")
-coeftest(feglsmodehs)
 
-## ------------------------------------------------------------------------
-phtest(gglsmodehs, feglsmodehs)
+if (requireNamespace("lmtest")){
+    library("lmtest")
+    gglsmodehs <- pggls(fm, RDSpillovers, model = "pooling")
+    coeftest(gglsmodehs)
 
-## ------------------------------------------------------------------------
-fdglsmodehs <- pggls(fm, RDSpillovers, model = "fd")
+    feglsmodehs <- pggls(fm, RDSpillovers, model = "within")
+    coeftest(feglsmodehs)
+    
+    phtest(gglsmodehs, feglsmodehs)
+    
+    fdglsmodehs <- pggls(fm, RDSpillovers, model = "fd")
+    
+    fee <- resid(feglsmodehs)
+    dbfee <- data.frame(fee=fee, id=attr(fee, "index")[[1]])
+    coeftest(plm(fee~lag(fee)+lag(fee,2), dbfee, model = "p", index="id"))
+    
+    fde <- resid(fdglsmodehs)
+    dbfde <- data.frame(fde=fde, id=attr(fde, "index")[[1]])
+    coeftest(plm(fde~lag(fde)+lag(fde,2), dbfde, model = "p", index="id"))
+    
+    coeftest(fdglsmodehs)
+}
 
-## ------------------------------------------------------------------------
-fee <- resid(feglsmodehs)
-dbfee <- data.frame(fee=fee, id=attr(fee, "index")[[1]])
-coeftest(plm(fee~lag(fee)+lag(fee,2), dbfee, model = "p", index="id"))
-
-## ----simpleartestfd------------------------------------------------------
-fde <- resid(fdglsmodehs)
-dbfde <- data.frame(fde=fde, id=attr(fde, "index")[[1]])
-coeftest(plm(fde~lag(fde)+lag(fde,2), dbfde, model = "p", index="id"))
-
-## ----fdglsehs2-----------------------------------------------------------
-coeftest(fdglsmodehs)
 
 #### Example 9-7
 
 ## ------------------------------------------------------------------------
 ccep.rds <- pcce(fm.rds, RDSpillovers, model="p")
-library(lmtest)
-ccep.tab <- cbind(coeftest(ccep.rds)[, 1:2],
-                  coeftest(ccep.rds, vcov = vcovNW)[, 2],
-                  coeftest(ccep.rds, vcov = vcovHC)[, 2])
-dimnames(ccep.tab)[[2]][2:4] <- c("Nonparam.", "vcovNW", "vcovHC")
-round(ccep.tab, 3)
+if (requireNamespace("lmtest")){
+    library("lmtest")
+    ccep.tab <- cbind(coeftest(ccep.rds)[, 1:2],
+                      coeftest(ccep.rds, vcov = vcovNW)[, 2],
+                      coeftest(ccep.rds, vcov = vcovHC)[, 2])
+    dimnames(ccep.tab)[[2]][2:4] <- c("Nonparam.", "vcovNW", "vcovHC")
+    round(ccep.tab, 3)
+}
 
 
 ## ------------------------------------------------------------------------
@@ -120,53 +124,54 @@ f <- data.frame(time = rep(0:40, 2),
                 rho = rep(c(0.2, 1), each = 41),
                 y = c(autoreg(rho = 0.2, T = 40), 
                       autoreg(rho = 1, T = 40)))
-library("ggplot2")
-ggplot(f, aes(time, y)) + geom_line() + facet_wrap(~ rho) + xlab("") + ylab("")
+if (requireNamespace("ggplot2")){
+    library("ggplot2")
+    ggplot(f, aes(time, y)) + geom_line() + facet_wrap(~ rho) + xlab("") + ylab("")
 
-## ------------------------------------------------------------------------
-autoreg <- function(rho = 0.1, T = 100){
-  e <- rnorm(T)
-  for (t in 2:(T)) e[t] <- e[t] + rho *e[t-1]
-  e
+    autoreg <- function(rho = 0.1, T = 100){
+        e <- rnorm(T)
+        for (t in 2:(T)) e[t] <- e[t] + rho *e[t-1]
+        e
+    }
+    tstat <- function(rho = 0.1, T = 100){
+        y <- autoreg(rho, T)
+        x <- autoreg(rho, T)
+        z <- lm(y ~ x)
+        coef(z)[2] / sqrt(diag(vcov(z))[2])
+    }
+    result <- c()
+    R <- 1000
+    for (i in 1:R) result <- c(result, tstat(rho = 0.2, T = 40))
+    quantile(result, c(0.025, 0.975))
+    prop.table(table(abs(result) > 2))
+
+
+    result <- c()
+    R <- 1000
+    for (i in 1:R) result <- c(result, tstat(rho = 1, T = 40))
+    quantile(result, c(0.025, 0.975))
+    prop.table(table(abs(result) > 2))
+
+    
+    R <- 1000
+    T <- 100
+    result <- c()
+    for (i in 1:R){
+        y <- autoreg(rho=1, T=100)
+        Dy <- y[2:T] - y[1:(T-1)]
+        Ly <- y[1:(T-1)]
+        z <- lm(Dy ~ Ly)
+        result <- c(result, coef(z)[2] / sqrt(diag(vcov(z))[2]))
+    }
+
+    ggplot(data.frame(x = result), aes(x = x)) + 
+        geom_histogram(fill = "white", col = "black", 
+                       bins = 20, aes(y = ..density..)) +
+        stat_function(fun = dnorm) + xlab("") + ylab("")
+
+
+    prop.table(table(result < -1.64))
 }
-tstat <- function(rho = 0.1, T = 100){
-  y <- autoreg(rho, T)
-  x <- autoreg(rho, T)
-  z <- lm(y ~ x)
-  coef(z)[2] / sqrt(diag(vcov(z))[2])
 }
-result <- c()
-R <- 1000
-for (i in 1:R) result <- c(result, tstat(rho = 0.2, T = 40))
-quantile(result, c(0.025, 0.975))
-prop.table(table(abs(result) > 2))
-
-## ------------------------------------------------------------------------
-result <- c()
-R <- 1000
-for (i in 1:R) result <- c(result, tstat(rho = 1, T = 40))
-quantile(result, c(0.025, 0.975))
-prop.table(table(abs(result) > 2))
-
-## ------------------------------------------------------------------------
-R <- 1000
-T <- 100
-result <- c()
-for (i in 1:R){
-  y <- autoreg(rho=1, T=100)
-  Dy <- y[2:T] - y[1:(T-1)]
-  Ly <- y[1:(T-1)]
-  z <- lm(Dy ~ Ly)
-  result <- c(result, coef(z)[2] / sqrt(diag(vcov(z))[2]))
-}
-
-ggplot(data.frame(x = result), aes(x = x)) + 
-    geom_histogram(fill = "white", col = "black", 
-                   bins = 20, aes(y = ..density..)) +
-    stat_function(fun = dnorm) + xlab("") + ylab("")
-
-## ------------------------------------------------------------------------
-prop.table(table(result < -1.64))
-
 }
 

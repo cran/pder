@@ -10,6 +10,8 @@
 
     \emph{country} :  United States and Spain 
 
+    \emph{package} : ordinalpanelexpe
+
     \emph{JEL codes: }C92, D23
 
     \emph{Chapter} : 08
@@ -28,7 +30,7 @@
     \item{effort}{the level of effort of the employee}
   }
 }
-\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
+\source{American Economic Association Data Archive : \url{https://www.aeaweb.org/aer/}}
 \references{
 Brandts, Jordi and David J. Cooper (2006) \dQuote{A Change Would Do You Good... An Experimental Study on How to Overcome Coordination Failure in Organizations}, \emph{American Economic Review}, \bold{96(3)}, 669-693, \doi{10.1257/aer.96.3.669}
 .

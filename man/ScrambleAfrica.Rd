@@ -10,6 +10,8 @@
 
     \emph{country} :  Africa 
 
+    \emph{package} : countpanel
+
     \emph{JEL codes: }D72, D74, F51, J15, O15, O17, Z13
 
     \emph{Chapter} : 08
@@ -42,7 +44,7 @@
     \item{city1400}{dummy for areas with major city in 1400}
   }
 }
-\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
+\source{American Economic Association Data Archive : \url{https://www.aeaweb.org/aer/}}
 \references{
 Michalopoulos, Stelios and Elias Papaioannou (2016) \dQuote{The Long-run Effects of the Scramble for Africa}, \emph{American Economic Review}, \bold{106(7)}, 1802--1848, \doi{10.1257/aer.20131311}
 .

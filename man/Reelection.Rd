@@ -10,6 +10,8 @@
 
     \emph{country} :  world 
 
+    \emph{package} : panelbinomial
+
     \emph{JEL codes: }D72, E62, H62, O47
 
     \emph{Chapter} : 08
@@ -30,7 +32,7 @@
     \item{maj}{one for majoritarian electoral system, 0 otherwise}
   }
 }
-\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
+\source{American Economic Association Data Archive : \url{https://www.aeaweb.org/aer/}}
 \references{
 Adi Brender and Allan Drazen (2008) \dQuote{How Do Budget Deficits and Economic Growth Affect Reelection Prospects? Evidence From a Large Panel of Countries}, \emph{American Economic Review}, \bold{98(5)}, 2203-2220, \doi{10.1257/aer.98.5.2203}
 .
@@ -43,6 +45,7 @@ Adi Brender and Allan Drazen (2008) \dQuote{How Do Budget Deficits and Economic 
 #### Example 8-1
 
 ## ------------------------------------------------------------------------
+\dontrun{
 library("plm")
 data("Reelection", package = "pder")
 
@@ -57,12 +60,16 @@ l4 <- update(elect.l, family = binomial(link = 'logit'))
 elect.p <- update(elect.l, family = binomial(link = 'probit'))
 
 ## ------------------------------------------------------------------------
-library("pglm")
-elect.pl <- pglm(reelect ~ ddefterm + ddefey + gdppc + dev + nd + maj, 
-                Reelection, family = binomial(link = 'logit'), 
+
+if (requireNamespace("pglm")){
+    library("pglm")
+    elect.pl <- pglm(reelect ~ ddefterm + ddefey + gdppc + dev + nd + maj, 
+                 Reelection, family = binomial(link = 'logit'), 
                 subset = narrow)
-elect.pp <- pglm(reelect ~ ddefterm + ddefey + gdppc + dev + nd + maj, 
-                Reelection, family = binomial(link = 'probit'), 
+    elect.pp <- pglm(reelect ~ ddefterm + ddefey + gdppc + dev + nd + maj, 
+                 Reelection, family = binomial(link = 'probit'), 
                 subset = narrow)
+}
+}
 }
 

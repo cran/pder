@@ -10,6 +10,8 @@
 
     \emph{country} :  United States 
 
+    \emph{package} : binomialpanel
+
     \emph{JEL codes: }L82
 
     \emph{Chapter} : 08
@@ -52,12 +54,17 @@ logitS <- glm(change ~ length + cuminf + cumsales, data = MagazinePrices,
 logitD <- glm(change ~ length + cuminf + cumsales + magazine, 
               data = MagazinePrices, 
               subset = included == 1, family = binomial(link = 'logit'))
-library("survival")
-logitC <- clogit(change ~ length + cuminf + cumsales + strata(id), 
-                 data = MagazinePrices,
-                 subset = included == 1)
-library("texreg")
-screenreg(list(logit = logitS, "FE logit" = logitD,
-"cond. logit" = logitC), omit.coef = "magazine")
+
+if (requireNamespace("survival")){
+    library("survival")
+    logitC <- clogit(change ~ length + cuminf + cumsales + strata(id), 
+                     data = MagazinePrices,
+                     subset = included == 1)
+    if (requireNamespace("texreg")){
+        library("texreg")
+        screenreg(list(logit = logitS, "FE logit" = logitD,
+                       "cond. logit" = logitC), omit.coef = "magazine")
+    }
+}
 }
 

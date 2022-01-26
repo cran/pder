@@ -2,13 +2,15 @@
 \docType{data}
 \alias{Tileries}
 \title{Production of Tileries in Egypt}
-\description{weeklyly observations of 25 firms
+\description{weeklyly observations of 25 firms from 1982 to 1983
 
     \emph{number of observations} : 483
 
     \emph{number of  time-series } :  22 
 
     \emph{country} :  Egypt 
+
+    \emph{package} : panelproduction
 
     \emph{JEL codes: }D24, C13, C51, C23, J31
 
@@ -61,12 +63,14 @@ til.fm <- log(output) ~ log(labor) + log(machine)
 lm.mod <- lm(til.fm, data = Tileries, subset = area == "fayoum")
 
 ## ------------------------------------------------------------------------
-library(car)
-lht(lm.mod, "log(labor) + log(machine) = 1")
+if (requireNamespace("car")){
+    library("car")
+    lht(lm.mod, "log(labor) + log(machine) = 1")
 
 ## ------------------------------------------------------------------------
-library(car)
-lht(lm.mod, "log(labor) + log(machine) = 1", vcov=vcovHC)
+    library("car")
+    lht(lm.mod, "log(labor) + log(machine) = 1", vcov=vcovHC)
+}
 
 
 #### Example 1-6
@@ -75,8 +79,10 @@ lht(lm.mod, "log(labor) + log(machine) = 1", vcov=vcovHC)
 plm.mod <- plm(til.fm, data = Tileries, subset = area == "fayoum")
 
 ## ------------------------------------------------------------------------
-library(car)
-lht(plm.mod, "log(labor) + log(machine) = 1", vcov = vcovHC)
+if (requireNamespace("car")){
+    library("car")
+    lht(plm.mod, "log(labor) + log(machine) = 1", vcov = vcovHC)
+}
 
 #### Example 3-1
 

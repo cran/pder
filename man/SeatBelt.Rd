@@ -2,13 +2,15 @@
 \docType{data}
 \alias{SeatBelt}
 \title{Seat Belt Usage and Traffic Fatalities}
-\description{yearly observations of 51 states
+\description{yearly observations of 51 states from 1983 to 1997
 
     \emph{number of observations} : 765
 
     \emph{number of  time-series } :  15 
 
     \emph{country} :  United States 
+
+    \emph{package} : panel
 
     \emph{JEL codes: }R41, K42
 
@@ -44,7 +46,7 @@
     \item{dsp}{a dummy variable equal to 1 for the periods in which the state had a primary-enforcement mandatory seat belt law that was preceded by a secondary enforcement law (no seat belt law is the base category}
   }
 }
-\source{author's website \url{http://www.stanford.edu/~leinav/}}
+\source{author's website \url{https://leinav.people.stanford.edu}}
 \references{
 Cohen, Alma and Liran Einav (2003) \dQuote{The Effects of Mandatory Seat Belt Laws on Driving Behavior and Traffic Fatalities}, \emph{The Review of Economics and Statistics}, \bold{85(4)}, 828-843, \doi{10.2139/ssrn.293582}
 .
@@ -55,6 +57,7 @@ Cohen, Alma and Liran Einav (2003) \dQuote{The Effects of Mandatory Seat Belt La
 #### Example 6-1
 
 ## ------------------------------------------------------------------------
+\dontrun{
 library("plm")
 
 ## ------------------------------------------------------------------------
@@ -82,6 +85,6 @@ rbind(ols = coef(summary(ols))[1,],
 SeatBelt$noccfat <- with(SeatBelt, log(farsnocc / (vmtrural + vmturban)))
 nivfe <- update(ivfe, noccfat ~ . | .)
 coef(summary(nivfe))[1, ]
-
+}
 }
 

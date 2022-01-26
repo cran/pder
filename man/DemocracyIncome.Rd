@@ -10,6 +10,8 @@
 
     \emph{country} :  world 
 
+    \emph{package} : panel
+
     \emph{JEL codes: }D72, O47
 
     \emph{Chapter} : 02, 07
@@ -25,7 +27,7 @@
     \item{sample}{a dummy variable to select the subset used in the original article}
   }
 }
-\source{American Economic Association Data Archive : \url{http://aeaweb.org/aer/}}
+\source{American Economic Association Data Archive : \url{https://www.aeaweb.org/aer/}}
 \references{
 Daron Acemoglu, Simon Johnson, James A. Robinson and Pierre Yared (2008) \dQuote{Income and Democracy}, \emph{American Economic Review}, \bold{98(3)}, 808-842, \doi{10.1257/aer.98.3.808}
 .
@@ -37,6 +39,7 @@ Daron Acemoglu, Simon Johnson, James A. Robinson and Pierre Yared (2008) \dQuote
 
 ## ------------------------------------------------------------------------
 
+\dontrun{
 data("DemocracyIncome", package = "pder")
 
 ## ------------------------------------------------------------------------
@@ -49,16 +52,18 @@ di2000$country <- as.character(di2000$country)
 di2000$country[- c(2,5, 23, 16, 17, 22, 71,  125, 37, 43, 44,
                    79, 98, 105, 50, 120,  81, 129, 57, 58,99)] <- NA
 
-library("ggplot2")
-ggplot(di2000, aes(income, democracy, label = country)) + 
-    geom_point(size = 0.4) + 
-    geom_text(aes(y= democracy + sample(0.03 * c(-1, 1), 
-                                        nrow(di2000), replace = TRUE)),
+if(requireNamespace("ggplot2")){
+    library("ggplot2")
+    ggplot(di2000, aes(income, democracy, label = country)) + 
+        geom_point(size = 0.4) + 
+        geom_text(aes(y= democracy + sample(0.03 * c(-1, 1), 
+                                            nrow(di2000), replace = TRUE)),
                   size = 2) +
-    theme(legend.text = element_text(size = 6), 
-          legend.title= element_text(size = 8),
-          axis.title = element_text(size = 8),
-          axis.text = element_text(size = 6))
+        theme(legend.text = element_text(size = 6), 
+              legend.title= element_text(size = 8),
+              axis.title = element_text(size = 8),
+              axis.text = element_text(size = 6))
+}
 
 
 ## ------------------------------------------------------------------------
@@ -143,5 +148,6 @@ mtest(diff2, order = 2)
 ## ------------------------------------------------------------------------
 sargan(diff2)
 sargan(sys2)
+}
 }
 
